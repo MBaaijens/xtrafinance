@@ -1,0 +1,575 @@
+<title>Kasboek 2024–2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+/* Layout: werkblad — vaste kop met saldo, tabs, daarna één brede kolom met lijsten. */
+:root{
+  --bg:#f3f4f1; --surface:#ffffff; --sunk:#e9ebe6; --line:#d6d9d2; --line-soft:#e4e6e0;
+  --fg:#1d2420; --muted:#5f6862; --faint:#8b938d;
+  --accent:#1f5a52; --accent-soft:#dbe9e5; --accent-fg:#ffffff;
+  --pos:#1d7a45; --neg:#a23b2c; --warn:#a86a12; --warn-soft:#f6ead2;
+  --display:"IBM Plex Serif", Georgia, serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141917; --surface:#1b211e; --sunk:#111513; --line:#2e3632; --line-soft:#252c28;
+  --fg:#e3e8e4; --muted:#a0aaa4; --faint:#717a74;
+  --accent:#6fb8a9; --accent-soft:#1f3a35; --accent-fg:#0d1513;
+  --pos:#5cc58a; --neg:#e9806f; --warn:#e0a84a; --warn-soft:#3a2e17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1b211e; --sunk:#111513; --line:#2e3632; --line-soft:#252c28;
+  --fg:#e3e8e4; --muted:#a0aaa4; --faint:#717a74;
+  --accent:#6fb8a9; --accent-soft:#1f3a35; --accent-fg:#0d1513;
+  --pos:#5cc58a; --neg:#e9806f; --warn:#e0a84a; --warn-soft:#3a2e17; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:15px/1.45 var(--body);margin:0}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{border-bottom:1px solid var(--line);background:var(--surface)}
+header.top .wrap{padding-block:18px 0;display:flex;flex-direction:column;gap:14px}
+.title-row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px}
+h1{font:600 26px/1.15 var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);font-size:13px}
+.save-state{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.dot.ok{background:var(--pos)} .dot.local{background:var(--warn)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.kpi{background:var(--surface);padding:10px 14px;min-width:0}
+.kpi .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.kpi .v{font:500 19px/1.3 var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi .v.pos{color:var(--pos)} .kpi .v.neg{color:var(--neg)}
+.kpi .bar{height:4px;background:var(--sunk);border-radius:2px;margin-top:6px;overflow:hidden}
+.kpi .bar i{display:block;height:100%;background:var(--accent)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;cursor:pointer;color:var(--muted);white-space:nowrap;font-weight:500}
+nav.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+nav.tabs .n{font:500 11px var(--mono);background:var(--warn-soft);color:var(--warn);border-radius:9px;padding:1px 6px;margin-left:6px}
+main .wrap{padding-block:18px 60px}
+.notice{border:1px solid var(--line);background:var(--warn-soft);color:var(--fg);padding:10px 14px;border-radius:var(--r);font-size:13px;margin-bottom:14px}
+.lede{color:var(--muted);max-width:68ch;margin:0 0 16px;font-size:14px}
+h2{font:600 18px/1.25 var(--display);margin:26px 0 10px}
+h2:first-child{margin-top:0}
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.filters input[type=search]{flex:1 1 220px;min-width:0}
+.ctl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:7px 10px;font-size:14px;max-width:100%}
+.ctl:focus-visible,button:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+label.tog{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.btn{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:7px 12px;cursor:pointer;font-size:14px;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.btn.small{padding:4px 9px;font-size:13px}
+.btn.ghost{border-color:transparent;background:none;color:var(--muted)}
+.btn.ghost:hover{color:var(--fg)}
+.resultline{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:8px}
+.resultline b{font:500 13px var(--mono);color:var(--fg)}
+/* Transactielijst */
+.list{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.row{display:grid;grid-template-columns:26px 92px minmax(0,1fr) 120px 230px;gap:10px;align-items:center;padding:9px 12px;border-top:1px solid var(--line-soft)}
+.row:first-child{border-top:0}
+.row.sel{background:var(--accent-soft)}
+.row .when{font:12px/1.35 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.row .who{min-width:0}
+.row .p{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .o{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .note{font-size:12px;color:var(--accent);margin-top:2px}
+.acc{display:inline-block;font:500 10px/1 var(--mono);letter-spacing:.04em;border:1px solid var(--line);border-radius:3px;padding:2px 4px;margin-right:6px;color:var(--muted);vertical-align:1px}
+.amt{font:500 14px var(--mono);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.amt.pos{color:var(--pos)} .amt .fx{display:block;font-size:11px;color:var(--faint)}
+.catcell{display:flex;align-items:center;gap:6px;justify-content:flex-end;min-width:0}
+.chip{display:inline-flex;align-items:center;gap:6px;max-width:100%;border:1px solid var(--line);background:var(--sunk);border-radius:14px;padding:4px 10px;font-size:13px;cursor:pointer;text-align:left}
+.chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip:hover{border-color:var(--accent)}
+.chip.unk{background:var(--warn-soft);border-color:var(--warn);color:var(--warn);font-weight:500}
+.chip.guess{border-style:dashed}
+.chip.man{background:var(--accent-soft);border-color:var(--accent)}
+.chip.xfer{color:var(--faint)}
+.src{font:10px var(--mono);color:var(--faint);width:14px;text-align:center}
+.iconbtn{background:none;border:0;cursor:pointer;color:var(--faint);padding:4px;border-radius:4px;line-height:0}
+.iconbtn:hover{color:var(--fg);background:var(--sunk)}
+.more{display:flex;justify-content:center;padding:14px}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+.bulkbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--fg);color:var(--bg);padding:8px 12px;border-radius:var(--r);margin-bottom:8px}
+.bulkbar .btn{background:var(--bg);color:var(--fg);border-color:var(--bg)}
+/* Wachtrij-groepen */
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.grp.unk{border-left:3px solid var(--warn)}
+.grp .gh{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.grp .gp{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.grp .gm{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.grp ul{margin:0;padding:0;list-style:none;font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+.grp li{display:flex;justify-content:space-between;gap:10px}
+.grp li span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.grp li span:last-child{font-family:var(--mono);white-space:nowrap}
+.grp .ga{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:auto}
+.grp .guessline{font-size:12px;color:var(--muted)}
+/* Overzicht */
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+table.ov{border-collapse:collapse;width:100%;font-size:13px;min-width:620px}
+table.ov th,table.ov td{padding:6px 12px;text-align:right;border-top:1px solid var(--line-soft);white-space:nowrap}
+table.ov th:first-child,table.ov td:first-child{text-align:left;white-space:normal}
+table.ov td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+table.ov td:first-child{font-family:var(--body)}
+table.ov thead th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500;border-top:0}
+table.ov tr.gr td{font-weight:600;background:var(--sunk)}
+table.ov tr.tot td{font-weight:600;border-top:2px solid var(--line)}
+table.ov tr.cat td:first-child{padding-left:24px;cursor:pointer}
+table.ov tr.cat td:first-child:hover{color:var(--accent);text-decoration:underline}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;overflow-x:auto}
+.chart svg{display:block;min-width:640px;width:100%;height:auto}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin:0 0 6px 4px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+/* Regels */
+.rules .row{grid-template-columns:minmax(0,1fr) 90px 220px 40px}
+.newcat{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.newcat input{flex:1 1 200px;min-width:0}
+/* Picker */
+.pop{position:fixed;z-index:50;width:min(360px,calc(100vw - 24px));max-height:min(460px,70vh);display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.pop .ph{padding:10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.pop .ph .ctx{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pop .pl{overflow-y:auto;padding:4px 0}
+.pop .pg{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);padding:8px 12px 2px}
+.pop .pi{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:none;border:0;padding:6px 12px;cursor:pointer;font-size:14px}
+.pop .pi:hover,.pop .pi.act{background:var(--accent-soft)}
+.pop .pi small{color:var(--faint);font-size:11px}
+.pop .pf{border-top:1px solid var(--line);padding:10px;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.pop .pf label{display:flex;gap:8px;align-items:flex-start;color:var(--muted)}
+.pop .pf input[type=text]{width:100%}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;background:var(--fg);color:var(--bg);padding:9px 14px;border-radius:var(--r);font-size:14px;display:flex;gap:12px;align-items:center;width:max-content;max-width:calc(100vw - 32px)}
+.toast button{background:none;border:0;color:var(--bg);text-decoration:underline;cursor:pointer;font-weight:600}
+@media (max-width:760px){
+  .kpi:last-child:nth-child(odd){grid-column:1/-1}
+  .row{grid-template-columns:22px minmax(0,1fr) auto;grid-template-areas:"c who amt" "c when cat";row-gap:4px}
+  .row>input{grid-area:c} .row .when{grid-area:when} .row .who{grid-area:who} .row .amt{grid-area:amt} .row .catcell{grid-area:cat}
+  .rules .row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:none}
+  .rules .row>*{grid-area:auto!important}
+}
+@media (prefers-reduced-motion:no-preference){.chip,.btn{transition:border-color .12s}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="title-row">
+      <div>
+        <h1>Kasboek 2024–2026</h1>
+        <div class="sub" id="sub"></div>
+      </div>
+      <div class="save-state"><span class="dot" id="dot"></span><span id="saveTxt">Verbinden…</span></div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <nav class="tabs" role="tablist" id="tabs">
+      <button role="tab" data-tab="queue" aria-selected="true">Te beoordelen<span class="n" id="nq">0</span></button>
+      <button role="tab" data-tab="all" aria-selected="false">Alle transacties</button>
+      <button role="tab" data-tab="overview" aria-selected="false">Overzicht</button>
+      <button role="tab" data-tab="rules" aria-selected="false">Regels &amp; categorieën</button>
+    </nav>
+  </div>
+</header>
+<main><div class="wrap" id="view"></div></main>
+<div class="pop" id="pop" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const DATA=/*__DATA__*/null;
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=new Intl.NumberFormat("nl-NL",{style:"currency",currency:"EUR"});
+const fmt0=new Intl.NumberFormat("nl-NL",{style:"currency",currency:"EUR",maximumFractionDigits:0});
+const eur=v=>fmt.format(v), eur0=v=>fmt0.format(v);
+const MONTHS=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
+const dnl=d=>{const [y,m,dd]=d.split("-");return `${+dd} ${MONTHS[m-1]} ${y}`};
+const METHOD={bc:"pin",ba:"pin buitenland",ga:"geldautomaat",gb:"geldautomaat buitenland",id:"iDEAL",ei:"incasso",cb:"ontvangen",bg:"overboeking",tb:"eigen rekening",bv:"betaalverzoek",db:"diversen",we:"overboeking",sb:"spaarboeking",kaart:"kaart"};
+
+const TX=DATA.tx, BASECATS=DATA.cats, ACC=DATA.accounts, AARD=DATA.aard;
+const TXBY=new Map(TX.map(t=>[t.id,t]));
+const GROUPS=["Inkomsten","Wonen & vaste lasten","Dagelijks","Vervoer","Vrije tijd","Shopping","Werk & onderneming","Financieel","Eigen categorieën","Te beoordelen"];
+
+// ---------- state ----------
+const S={overrides:{},rules:{},custom:[],tab:"queue",sel:new Set(),limit:150,
+  f:{q:"",year:"",acc:"",cat:"",dir:"",xfer:false,month:""},showGuess:true,expanded:new Set()};
+let CAT=new Map();
+function rebuildCats(){
+  CAT=new Map(BASECATS.map(c=>[c.id,c]));
+  for(const c of S.custom) CAT.set(c.id,{...c,group:c.group||"Eigen categorieën"});
+}
+rebuildCats();
+const normP=p=>String(p||"").trim().toLowerCase().replace(/\s+/g," ");
+function hash(s){let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)}return (h>>>0).toString(36)}
+const dirOf=t=>t.v>=0?"in":"out";
+const ruleKey=(p,dir)=>"r"+hash(normP(p)+"|"+dir);
+function ruleFor(t){return S.rules[ruleKey(t.p,dirOf(t))]||S.rules[ruleKey(t.p,"all")]||null}
+function eff(t){
+  const o=S.overrides[t.id];
+  if(o&&o.c&&CAT.has(o.c)) return {c:o.c,src:"man"};
+  const r=ruleFor(t);
+  if(r&&CAT.has(r.c)) return {c:r.c,src:"rule"};
+  return {c:t.c,src:t.q?"guess":"auto"};
+}
+const catOf=t=>eff(t).c;
+const kindOf=id=>(CAT.get(id)||{}).kind||"out";
+
+// ---------- storage: db, anders browser ----------
+let db=null, mode="connecting";
+const LS="kasboek-v1";
+function lsLoad(){try{const j=JSON.parse(localStorage.getItem(LS)||"{}");S.overrides=j.overrides||{};S.rules=j.rules||{};S.custom=j.custom||[];rebuildCats()}catch(e){}}
+function lsSave(){try{localStorage.setItem(LS,JSON.stringify({overrides:S.overrides,rules:S.rules,custom:S.custom}))}catch(e){}}
+function setMode(m,txt){mode=m;$("#dot").className="dot "+(m==="db"?"ok":m==="local"?"local":"");$("#saveTxt").textContent=txt}
+
+async function connect(){
+  let timer=setTimeout(()=>{if(mode==="connecting"){lsLoad();setMode("local","Opslag nog niet bereikbaar — tijdelijk in deze browser");render()}},10000);
+  try{ db=window.claude&&window.claude.use?await window.claude.use("db"):null }catch(e){db=null}
+  if(!db){clearTimeout(timer);lsLoad();setMode("local","Wordt alleen in deze browser bewaard");render();return}
+  let got=0;const done=()=>{if(++got>=3){clearTimeout(timer);setMode("db","Opgeslagen in je kasboek");render()}};
+  const onErr=e=>{setMode("local","Opslag gaf een fout ("+(e&&e.code)+") — wijzigingen mogelijk niet bewaard")};
+  let first={o:true,r:true,c:true};
+  db.collection("overrides").onSnapshot(s=>{const o={};s.docs.forEach(d=>o[d.id]=d.data());S.overrides=o;if(first.o&&!s.metadata.fromCache){first.o=false;done()}scheduleRender()},onErr);
+  db.collection("rules").onSnapshot(s=>{const o={};s.docs.forEach(d=>o[d.id]=d.data());S.rules=o;if(first.r&&!s.metadata.fromCache){first.r=false;done()}scheduleRender()},onErr);
+  db.doc("config/custom").onSnapshot(s=>{S.custom=(s.exists&&s.data().cats)||[];rebuildCats();if(first.c&&!s.metadata.fromCache){first.c=false;done()}scheduleRender()},onErr);
+}
+let rq=0;function scheduleRender(){cancelAnimationFrame(rq);rq=requestAnimationFrame(render)}
+
+// Schrijven: één write tegelijk per document
+const pending=new Map();
+async function put(col,id,val){
+  if(col==="overrides"){val?S.overrides[id]=val:delete S.overrides[id]} else {val?S.rules[id]=val:delete S.rules[id]}
+  if(mode!=="db"){lsSave();return}
+  const key=col+"/"+id; const prev=pending.get(key)||Promise.resolve();
+  const p=prev.catch(()=>{}).then(()=>val?db.doc(key).set(val):db.doc(key).delete()).catch(e=>{toast("Opslaan mislukt: "+(e&&e.message||e.code))});
+  pending.set(key,p);return p;
+}
+async function putCustom(){ if(mode!=="db"){lsSave();return} try{await db.doc("config/custom").set({cats:S.custom})}catch(e){toast("Opslaan mislukt")} }
+
+// ---------- acties ----------
+function setTxCat(ids,c,note){
+  const undo=ids.map(id=>[id,S.overrides[id]?{...S.overrides[id]}:null]);
+  ids.forEach(id=>{const o={...(S.overrides[id]||{})};if(c!==undefined){if(c===null)delete o.c;else o.c=c}
+    if(note!==undefined){if(note)o.n=note;else delete o.n} o.at=Date.now();
+    put("overrides",id,(o.c||o.n)?o:null)});
+  render();
+  return ()=>{undo.forEach(([id,v])=>put("overrides",id,v));render()};
+}
+function setRule(p,dir,c){
+  const k=ruleKey(p,dir), prev=S.rules[k]?{...S.rules[k]}:null;
+  put("rules",k,c?{p:p,dir:dir,c:c,at:Date.now()}:null); render();
+  return ()=>{put("rules",k,prev);render()};
+}
+let toastT=0;
+function toast(msg,undo){const el=$("#toast");el.innerHTML=esc(msg)+(undo?' <button type="button">Ongedaan maken</button>':"");el.hidden=false;
+  if(undo)el.querySelector("button").onclick=()=>{undo();el.hidden=true};clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,6000)}
+
+// ---------- filters & totals ----------
+function inPeriod(t){const f=S.f;return(!f.year||t.d.startsWith(f.year))&&(!f.month||t.d.startsWith(f.month))}
+function totals(list){let inc=0,out=0;for(const t of list){const k=kindOf(catOf(t));if(k==="in")inc+=t.v;else if(k==="out")out-=t.v}return{inc,out,net:inc-out}}
+
+function renderHeader(){
+  const per=TX.filter(inPeriod), tt=totals(per);
+  const unk=TX.filter(t=>catOf(t)==="onbekend").length;
+  const touched=new Set([...Object.keys(S.overrides)]);
+  for(const t of TX){if(ruleFor(t))touched.add(t.id)}
+  const done=TX.length-unk;
+  const y=S.f.year||"2024 – 2026";
+  $("#sub").textContent=`${TX.length.toLocaleString("nl-NL")} transacties · Rabo privé, Knab zakelijk en Crypto.com-kaart · ${dnl(TX[0].d)} t/m ${dnl(TX[TX.length-1].d)}`;
+  $("#kpis").innerHTML=`
+   <div class="kpi"><div class="k">Inkomsten ${esc(y)}</div><div class="v pos">${eur0(tt.inc)}</div></div>
+   <div class="kpi"><div class="k">Uitgaven ${esc(y)}</div><div class="v neg">${eur0(tt.out)}</div></div>
+   <div class="kpi"><div class="k">Verschil</div><div class="v ${tt.net>=0?"pos":"neg"}">${eur0(tt.net)}</div></div>
+   <div class="kpi"><div class="k">Gecategoriseerd</div><div class="v">${(done/TX.length*100).toFixed(1).replace(".",",")}%</div><div class="bar"><i style="width:${done/TX.length*100}%"></i></div></div>
+   <div class="kpi"><div class="k">Door jou bepaald</div><div class="v">${touched.size.toLocaleString("nl-NL")}</div></div>`;
+  $("#nq").textContent=unk;
+  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===S.tab)));
+}
+
+function chip(t){
+  const e=eff(t), c=CAT.get(e.c)||{label:e.c};
+  const cls=e.c==="onbekend"?"unk":e.src==="man"||e.src==="rule"?"man":e.src==="guess"?"guess":c.kind==="transfer"?"xfer":"";
+  const tip=e.src==="man"?"Handmatig gekozen":e.src==="rule"?"Via jouw regel voor deze tegenpartij":e.src==="guess"?"Automatisch, onzeker ("+t.w+")":"Automatisch ("+t.w+")";
+  return `<button type="button" class="chip ${cls}" data-pick="${t.id}" title="${esc(tip)}"><span>${esc(c.label)}</span></button>`;
+}
+const SRC={man:"✎",rule:"≡",guess:"?",auto:""};
+function rowHTML(t,withCheck=true){
+  const e=eff(t), o=S.overrides[t.id];
+  return `<div class="row${S.sel.has(t.id)?" sel":""}" data-id="${t.id}">
+   ${withCheck?`<input type="checkbox" aria-label="Selecteer" data-sel="${t.id}" ${S.sel.has(t.id)?"checked":""}>`:"<span></span>"}
+   <div class="when">${dnl(t.d)}${t.t?"<br>"+t.t:""}</div>
+   <div class="who"><div class="p"><span class="acc" title="${esc(ACC[t.a])}">${t.a==="R"?"RABO":t.a==="K"?"KNAB":"KAART"}</span>${esc(t.p)}</div>
+     <div class="o" title="${esc(t.o)}">${esc(METHOD[t.m]||t.m||"")}${t.o?" · "+esc(t.o):""}</div>
+     ${o&&o.n?`<div class="note">“${esc(o.n)}”</div>`:""}</div>
+   <div class="amt ${t.v>0?"pos":""}">${eur(t.v)}${t.fx?`<span class="fx">${esc(t.fx)}</span>`:""}</div>
+   <div class="catcell"><span class="src" title="${e.src==="man"?"handmatig":e.src==="rule"?"jouw regel":e.src==="guess"?"onzeker":"automatisch"}">${SRC[e.src]}</span>${chip(t)}</div>
+  </div>`;
+}
+
+// ---------- tab: te beoordelen ----------
+function groupsFor(pred){
+  const m=new Map();
+  for(const t of TX){ if(!pred(t))continue; const k=normP(t.p)+"|"+dirOf(t); let g=m.get(k); if(!g){g={k,p:t.p,dir:dirOf(t),tx:[],sum:0};m.set(k,g)} g.tx.push(t);g.sum+=t.v }
+  return [...m.values()].sort((a,b)=>Math.abs(b.sum)-Math.abs(a.sum));
+}
+function grpHTML(g,unk){
+  const c=CAT.get(catOf(g.tx[0]));
+  const open=S.expanded.has(g.k);
+  const items=(open?g.tx:g.tx.slice(0,3)).map(t=>`<li><span title="${esc(t.o)}">${dnl(t.d)} · ${esc(t.o||METHOD[t.m]||"")}</span><span>${eur(t.v)}</span></li>`).join("");
+  return `<div class="grp ${unk?"unk":""}" data-g="${esc(g.k)}">
+    <div class="gh"><div class="gp">${esc(g.p)}</div><div class="gm">${eur(g.sum)}</div></div>
+    <div class="gm">${g.tx.length}× ${g.dir==="in"?"ontvangen":"betaald"} · ${ACC[g.tx[0].a]}${g.tx.length>1?` · ${dnl(g.tx[0].d)} – ${dnl(g.tx[g.tx.length-1].d)}`:""}</div>
+    <ul>${items}</ul>
+    ${g.tx.length>3?`<button type="button" class="btn ghost small" data-expand="${esc(g.k)}">${open?"Minder tonen":"Alle "+g.tx.length+" tonen"}</button>`:""}
+    ${!unk?`<div class="guessline">Automatisch: <b>${esc(c.label)}</b></div>`:""}
+    <div class="ga">
+      <button type="button" class="btn small primary" data-gpick="${esc(g.k)}">${unk?"Categorie kiezen":"Wijzigen"}</button>
+      ${!unk?`<button type="button" class="btn small" data-gok="${esc(g.k)}">Klopt</button>`:""}
+      ${g.tx.length>1?`<button type="button" class="btn small ghost" data-gsplit="${esc(g.k)}">Per transactie</button>`:""}
+    </div></div>`;
+}
+let GCACHE=new Map();
+function renderQueue(v){
+  const unk=groupsFor(t=>catOf(t)==="onbekend");
+  const guess=groupsFor(t=>{const e=eff(t);return e.src==="guess"});
+  GCACHE=new Map([...unk,...guess].map(g=>[g.k,g]));
+  const nU=unk.reduce((s,g)=>s+g.tx.length,0), nG=guess.reduce((s,g)=>s+g.tx.length,0);
+  v.innerHTML=`
+   <p class="lede">Transacties zijn gegroepeerd per tegenpartij. Kies je een categorie voor een groep, dan wordt dat een <b>regel</b> voor alle huidige transacties van die tegenpartij (alleen in dezelfde richting: betaald of ontvangen). Wil je één transactie anders, gebruik dan <i>Per transactie</i>. Alles kun je later terugdraaien onder <i>Regels</i>.</p>
+   <h2>Onbekend · ${nU} transacties, ${unk.length} tegenpartijen</h2>
+   ${unk.length?`<div class="groups">${unk.map(g=>grpHTML(g,true)).join("")}</div>`:`<div class="list empty">Alles heeft een categorie.</div>`}
+   <h2>Even checken · ${nG} automatische gokjes</h2>
+   <p class="lede">Dit zijn Tikkies, betaalverzoeken, terugbetalingen en opwaarderingen waarvan het doel niet zeker is. Klik <i>Klopt</i> om te bevestigen of kies iets anders.</p>
+   ${guess.length?`<div class="groups">${guess.map(g=>grpHTML(g,false)).join("")}</div>`:`<div class="list empty">Niets meer te checken.</div>`}`;
+}
+
+// ---------- tab: alle transacties ----------
+function filtered(){
+  const f=S.f, q=f.q.trim().toLowerCase();
+  return TX.filter(t=>{
+    if(!inPeriod(t))return false;
+    if(f.acc&&t.a!==f.acc)return false;
+    if(f.dir&&dirOf(t)!==f.dir)return false;
+    const c=catOf(t);
+    if(f.cat){ if(f.cat.startsWith("g:")){if((CAT.get(c)||{}).group!==f.cat.slice(2))return false} else if(c!==f.cat)return false }
+    if(!f.xfer&&!f.cat&&kindOf(c)==="transfer")return false;
+    if(q){const n=S.overrides[t.id];if(!(t.p.toLowerCase().includes(q)||t.o.toLowerCase().includes(q)||(n&&n.n&&n.n.toLowerCase().includes(q))||String(Math.abs(t.v)).includes(q.replace(",","."))))return false}
+    return true;
+  }).reverse();
+}
+function catOptions(sel){
+  let h=`<option value="">Alle categorieën</option>`;
+  for(const g of GROUPS){const cs=[...CAT.values()].filter(c=>c.group===g);if(!cs.length)continue;
+    h+=`<optgroup label="${esc(g)}"><option value="g:${esc(g)}" ${sel==="g:"+g?"selected":""}>Hele groep ${esc(g)}</option>${cs.map(c=>`<option value="${c.id}" ${sel===c.id?"selected":""}>${esc(c.label)}</option>`).join("")}</optgroup>`}
+  return h;
+}
+function renderAll(v){
+  const f=S.f, list=filtered(), tt=totals(list);
+  const years=["2024","2025","2026"];
+  const months=f.year?MONTHS.map((m,i)=>`<option value="${f.year}-${String(i+1).padStart(2,"0")}" ${f.month===f.year+"-"+String(i+1).padStart(2,"0")?"selected":""}>${m} ${f.year}</option>`).join(""):"";
+  v.innerHTML=`
+   <div class="filters">
+    <input type="search" class="ctl" id="fq" placeholder="Zoek op naam, omschrijving, notitie of bedrag" value="${esc(f.q)}">
+    <select class="ctl" id="fy"><option value="">Alle jaren</option>${years.map(y=>`<option ${f.year===y?"selected":""}>${y}</option>`).join("")}</select>
+    ${f.year?`<select class="ctl" id="fm"><option value="">Hele jaar</option>${months}</select>`:""}
+    <select class="ctl" id="fa"><option value="">Alle rekeningen</option>${Object.entries(ACC).map(([k,n])=>`<option value="${k}" ${f.acc===k?"selected":""}>${n}</option>`).join("")}</select>
+    <select class="ctl" id="fd"><option value="">In en uit</option><option value="out" ${f.dir==="out"?"selected":""}>Alleen betaald</option><option value="in" ${f.dir==="in"?"selected":""}>Alleen ontvangen</option></select>
+    <select class="ctl" id="fc">${catOptions(f.cat)}</select>
+    <label class="tog"><input type="checkbox" id="fx" ${f.xfer?"checked":""}> Eigen overboekingen tonen</label>
+    ${(f.q||f.year||f.acc||f.dir||f.cat)?`<button type="button" class="btn ghost small" id="freset">Filters wissen</button>`:""}
+   </div>
+   ${S.sel.size?`<div class="bulkbar"><b>${S.sel.size} geselecteerd</b><button type="button" class="btn small" id="bulkpick">Categorie geven</button><button type="button" class="btn small" id="bulkreset">Terug naar automatisch</button><button type="button" class="btn small" id="bulkclear">Selectie wissen</button></div>`:""}
+   <div class="resultline"><span><b>${list.length.toLocaleString("nl-NL")}</b> transacties</span><span>in <b>${eur(tt.inc)}</b></span><span>uit <b>${eur(tt.out)}</b></span>
+     <span><label class="tog" style="display:inline-flex"><input type="checkbox" id="selall"> alles op deze pagina selecteren</label></span></div>
+   <div class="list" id="txlist">${list.length?list.slice(0,S.limit).map(t=>rowHTML(t)).join(""):`<div class="empty">Geen transacties met deze filters.</div>`}</div>
+   ${list.length>S.limit?`<div class="more"><button type="button" class="btn" id="more">Toon meer (${list.length-S.limit} over)</button></div>`:""}`;
+  const q=$("#fq"); let qt=0;
+  q.addEventListener("input",()=>{clearTimeout(qt);qt=setTimeout(()=>{S.f.q=q.value;S.limit=150;const pos=q.selectionStart;render();const n=$("#fq");n.focus();n.setSelectionRange(pos,pos)},200)});
+  const bind=(id,key)=>{const el=$(id);if(el)el.onchange=()=>{S.f[key]=el.type==="checkbox"?el.checked:el.value;if(key==="year")S.f.month="";S.limit=150;render()}};
+  bind("#fy","year");bind("#fm","month");bind("#fa","acc");bind("#fd","dir");bind("#fc","cat");bind("#fx","xfer");
+  const r=$("#freset");if(r)r.onclick=()=>{S.f={q:"",year:"",acc:"",cat:"",dir:"",xfer:false,month:""};render()};
+  const m=$("#more");if(m)m.onclick=()=>{S.limit+=300;render()};
+  $("#selall").onchange=e=>{list.slice(0,S.limit).forEach(t=>e.target.checked?S.sel.add(t.id):S.sel.delete(t.id));render()};
+  const bp=$("#bulkpick");if(bp)bp.onclick=e=>openPicker(e.currentTarget,{ids:[...S.sel]});
+  const br=$("#bulkreset");if(br)br.onclick=()=>{const u=setTxCat([...S.sel],null);toast(S.sel.size+" transacties terug naar automatisch",u);S.sel.clear();render()};
+  const bc=$("#bulkclear");if(bc)bc.onclick=()=>{S.sel.clear();render()};
+}
+
+// ---------- tab: overzicht ----------
+function renderOverview(v){
+  const years=["2024","2025","2026"];
+  const agg={}; // cat -> {y:sum}
+  const monthly={}; // ym -> {inc,out}
+  for(const t of TX){const c=catOf(t),k=kindOf(c),y=t.d.slice(0,4),ym=t.d.slice(0,7);
+    if(k==="transfer")continue;
+    (agg[c]=agg[c]||{})[y]=((agg[c]||{})[y]||0)+(k==="in"?t.v:-t.v);
+    const mm=monthly[ym]=monthly[ym]||{inc:0,out:0}; if(k==="in")mm.inc+=t.v;else mm.out-=t.v;}
+  const monthsIn={"2024":12,"2025":12,"2026":+TX[TX.length-1].d.slice(5,7)};
+  let rows="";
+  const groupTot=(kind)=>{const o={};for(const y of years)o[y]=0;return o};
+  const totIn=groupTot(),totOut=groupTot();
+  for(const g of GROUPS){
+    const cs=[...CAT.values()].filter(c=>c.group===g&&c.kind!=="transfer"&&agg[c.id]);
+    if(!cs.length)continue;
+    const gs={};years.forEach(y=>gs[y]=cs.reduce((s,c)=>s+(agg[c.id][y]||0),0));
+    const isIn=g==="Inkomsten";
+    years.forEach(y=>(isIn?totIn:totOut)[y]+=gs[y]);
+    rows+=`<tr class="gr"><td>${esc(g)}</td>${years.map(y=>`<td>${eur0(gs[y])}</td>`).join("")}<td>${eur0(gs["2025"]/12)}</td></tr>`;
+    cs.sort((a,b)=>Object.values(agg[b.id]).reduce((s,x)=>s+x,0)-Object.values(agg[a.id]).reduce((s,x)=>s+x,0));
+    for(const c of cs) rows+=`<tr class="cat" data-cat="${c.id}"><td>${esc(c.label)}</td>${years.map(y=>`<td>${agg[c.id][y]?eur0(agg[c.id][y]):"–"}</td>`).join("")}<td>${agg[c.id]["2025"]?eur0(agg[c.id]["2025"]/12):"–"}</td></tr>`;
+  }
+  rows+=`<tr class="tot"><td>Totaal inkomsten</td>${years.map(y=>`<td>${eur0(totIn[y])}</td>`).join("")}<td>${eur0(totIn["2025"]/12)}</td></tr>`;
+  rows+=`<tr class="tot"><td>Totaal uitgaven</td>${years.map(y=>`<td>${eur0(totOut[y])}</td>`).join("")}<td>${eur0(totOut["2025"]/12)}</td></tr>`;
+  rows+=`<tr class="tot"><td>Verschil</td>${years.map(y=>`<td>${eur0(totIn[y]-totOut[y])}</td>`).join("")}<td>${eur0((totIn["2025"]-totOut["2025"])/12)}</td></tr>`;
+
+  // aard
+  const aardAgg={};for(const t of TX){const c=CAT.get(catOf(t));if(!c||c.kind!=="out")continue;const y=t.d.slice(0,4);(aardAgg[c.aard]=aardAgg[c.aard]||{})[y]=((aardAgg[c.aard]||{})[y]||0)-t.v}
+  const aRows=Object.keys(AARD).filter(a=>aardAgg[a]).map(a=>`<tr><td>${esc(AARD[a])}</td>${years.map(y=>`<td>${aardAgg[a][y]?eur0(aardAgg[a][y]):"–"}</td>`).join("")}<td>${years.map(y=>totOut[y]?Math.round((aardAgg[a][y]||0)/totOut[y]*100)+"%":"–").join(" · ")}</td></tr>`).join("");
+
+  v.innerHTML=`
+   <p class="lede">Eigen overboekingen, sparen en beleggen tellen niet mee. Omzet is inclusief btw; afgedragen btw staat bij Belastingen. Klik op een categorie om de transacties te zien.</p>
+   <h2>Per maand</h2>
+   <div class="chart"><div class="legend"><span><i style="background:var(--pos)"></i>Inkomsten</span><span><i style="background:var(--neg)"></i>Uitgaven</span></div>${monthChart(monthly)}</div>
+   <h2>Per categorie</h2>
+   <div class="tablewrap"><table class="ov"><thead><tr><th>Categorie</th>${years.map(y=>`<th>${y}${y==="2026"?" (t/m "+MONTHS[monthsIn["2026"]-1]+")":""}</th>`).join("")}<th>Per maand 2025</th></tr></thead><tbody>${rows}</tbody></table></div>
+   <h2>Waarom geef je het uit?</h2>
+   <p class="lede">Elke uitgavecategorie heeft een ‘aard’: noodzakelijk, gemak &amp; impuls, genieten &amp; sociaal, groei &amp; gezondheid, werk of financieel. Dit is de basis voor de psychologische analyse straks; pas de aard van een categorie aan onder Regels als die voor jou anders voelt.</p>
+   <div class="tablewrap"><table class="ov"><thead><tr><th>Aard</th>${years.map(y=>`<th>${y}</th>`).join("")}<th>Aandeel 24 · 25 · 26</th></tr></thead><tbody>${aRows}</tbody></table></div>`;
+  v.querySelectorAll("tr.cat").forEach(tr=>tr.onclick=()=>{S.f={q:"",year:"",acc:"",cat:tr.dataset.cat,dir:"",xfer:false,month:""};S.tab="all";S.limit=150;render();window.scrollTo(0,0)});
+}
+function monthChart(monthly){
+  const keys=Object.keys(monthly).sort(); const W=1000,H=260,pl=56,pr=8,pt=10,pb=28;
+  const max=Math.max(...keys.map(k=>Math.max(monthly[k].inc,monthly[k].out)),1);
+  const step=Math.pow(10,Math.floor(Math.log10(max)));const nice=[1,2,2.5,5,10].map(m=>m*step).find(s=>max/s<=5)||step*10;
+  const top=Math.ceil(max/nice)*nice; const y=v=>pt+(H-pt-pb)*(1-v/top);
+  const bw=(W-pl-pr)/keys.length; let s="";
+  for(let v=0;v<=top;v+=nice){s+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line-soft)"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--mono)">${v>=1000?(v/1000)+"k":v}</text>`}
+  keys.forEach((k,i)=>{const x=pl+i*bw, m=monthly[k], w=Math.max(2,bw/2-2);
+    s+=`<rect x="${x+1}" y="${y(m.inc)}" width="${w}" height="${y(0)-y(m.inc)}" fill="var(--pos)" rx="1"><title>${k}: in ${eur0(m.inc)}</title></rect>`;
+    s+=`<rect x="${x+1+w+1}" y="${y(Math.max(0,m.out))}" width="${w}" height="${Math.max(0,y(0)-y(m.out))}" fill="var(--neg)" opacity=".85" rx="1"><title>${k}: uit ${eur0(m.out)}</title></rect>`;
+    if(k.endsWith("-01")||i===0)s+=`<text x="${x+2}" y="${H-8}" font-size="11" fill="var(--muted)" font-family="var(--mono)">${MONTHS[+k.slice(5)-1]} ${k.slice(0,4)}</text>`;
+    else if(+k.slice(5)%3===1)s+=`<text x="${x+2}" y="${H-8}" font-size="10" fill="var(--faint)" font-family="var(--mono)">${MONTHS[+k.slice(5)-1]}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Inkomsten en uitgaven per maand">${s}</svg>`;
+}
+
+// ---------- tab: regels ----------
+function renderRules(v){
+  const rules=Object.entries(S.rules).sort((a,b)=>(b[1].at||0)-(a[1].at||0));
+  const cnt=k=>TX.filter(t=>ruleKey(t.p,dirOf(t))===k||ruleKey(t.p,"all")===k).length;
+  const ov=Object.entries(S.overrides).filter(([id])=>TXBY.has(id)).sort((a,b)=>(b[1].at||0)-(a[1].at||0));
+  v.innerHTML=`
+   <h2>Jouw regels · ${rules.length}</h2>
+   <p class="lede">Een regel geldt voor alle transacties met exact dezelfde tegenpartij en richting. Een handmatige keuze per transactie gaat altijd voor.</p>
+   <div class="list rules">${rules.length?rules.map(([k,r])=>`<div class="row"><div class="who"><div class="p">${esc(r.p)}</div><div class="o">${r.dir==="in"?"ontvangen":r.dir==="out"?"betaald":"in en uit"} · ${cnt(k)} transacties</div></div>
+     <div class="amt"></div><div class="catcell"><button type="button" class="chip man" data-rpick="${k}"><span>${esc((CAT.get(r.c)||{label:r.c}).label)}</span></button></div>
+     <button type="button" class="iconbtn" title="Regel verwijderen" data-rdel="${k}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h10M6 4V2.5h4V4M5 4l.6 9h4.8L11 4"/></svg></button></div>`).join(""):`<div class="empty">Nog geen regels. Kies in <i>Te beoordelen</i> een categorie voor een groep om er een te maken.</div>`}</div>
+   <h2>Handmatig per transactie · ${ov.length}</h2>
+   <div class="list">${ov.length?ov.slice(0,200).map(([id])=>rowHTML(TXBY.get(id),false)).join(""):`<div class="empty">Nog niets handmatig aangepast.</div>`}</div>
+   <h2>Eigen categorie toevoegen</h2>
+   <div class="newcat">
+     <input class="ctl" id="nc-name" placeholder="Naam, bijv. ‘Hond’ of ‘Bruiloft 2026’" maxlength="40">
+     <select class="ctl" id="nc-kind"><option value="out">Uitgave</option><option value="in">Inkomen</option><option value="transfer">Telt niet mee</option></select>
+     <select class="ctl" id="nc-aard">${Object.entries(AARD).map(([k,l])=>`<option value="${k}">${esc(l)}</option>`).join("")}</select>
+     <button type="button" class="btn primary" id="nc-add">Toevoegen</button>
+   </div>
+   ${S.custom.length?`<div class="resultline" style="margin-top:10px">Eigen: ${S.custom.map(c=>`<span>${esc(c.label)} <button type="button" class="btn ghost small" data-cdel="${c.id}">verwijderen</button></span>`).join("")}</div>`:""}
+   <h2>Exporteren</h2>
+   <p class="lede">Download alle transacties met de categorie zoals die nu is, als CSV voor Excel of Numbers.</p>
+   <button type="button" class="btn" id="export">CSV downloaden</button>`;
+  v.querySelectorAll("[data-rdel]").forEach(b=>b.onclick=()=>{const r=S.rules[b.dataset.rdel];const u=setRule(r.p,r.dir,null);toast("Regel verwijderd",u)});
+  v.querySelectorAll("[data-rpick]").forEach(b=>b.onclick=()=>{const r=S.rules[b.dataset.rpick];openPicker(b,{rule:r})});
+  v.querySelectorAll("[data-cdel]").forEach(b=>b.onclick=()=>{S.custom=S.custom.filter(c=>c.id!==b.dataset.cdel);rebuildCats();putCustom();render()});
+  $("#nc-add").onclick=()=>{const name=$("#nc-name").value.trim();if(!name)return;const id="x_"+hash(name+Date.now());
+    S.custom.push({id,label:name,group:"Eigen categorieën",kind:$("#nc-kind").value,aard:$("#nc-aard").value});rebuildCats();putCustom();toast("Categorie ‘"+name+"’ toegevoegd");render()};
+  $("#export").onclick=exportCSV;
+}
+async function exportCSV(){
+  const head=["datum","tijd","rekening","bedrag","tegenpartij","omschrijving","categorie","groep","aard","bron","notitie"];
+  const q=s=>'"'+String(s??"").replace(/"/g,'""')+'"';
+  const lines=[head.join(";")].concat(TX.map(t=>{const e=eff(t),c=CAT.get(e.c)||{};const o=S.overrides[t.id]||{};
+    return [t.d,t.t,ACC[t.a],String(t.v).replace(".",","),q(t.p),q(t.o),q(c.label),q(c.group),q(AARD[c.aard]||""),e.src,q(o.n||"")].join(";")}));
+  const data="﻿"+lines.join("\n");
+  try{const dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null;
+    if(!dl){toast("Downloaden kan niet in deze weergave");return}
+    await dl.save({filename:"kasboek-2024-2026.csv",data});}catch(e){if(e&&e.code!=="declined")toast("Download niet gelukt")}
+}
+
+// ---------- picker ----------
+let PCTX=null, pIdx=0;
+function openPicker(anchor,ctx){
+  PCTX=ctx; const pop=$("#pop");
+  let title="", showScope=false, showNote=false, cur="";
+  if(ctx.id){const t=TXBY.get(ctx.id);title=`${t.p} · ${eur(t.v)} · ${dnl(t.d)}`;showScope=true;showNote=true;cur=catOf(t)}
+  else if(ctx.group){title=`${ctx.group.p} · ${ctx.group.tx.length} transacties`;cur=catOf(ctx.group.tx[0])}
+  else if(ctx.ids){title=`${ctx.ids.length} geselecteerde transacties`}
+  else if(ctx.rule){title=`Regel: ${ctx.rule.p}`;cur=ctx.rule.c}
+  const t=ctx.id?TXBY.get(ctx.id):null, o=t?S.overrides[t.id]||{}:{};
+  const nSame=t?TX.filter(x=>normP(x.p)===normP(t.p)&&dirOf(x)===dirOf(t)).length:0;
+  pop.innerHTML=`<div class="ph"><div class="ctx">${esc(title)}</div><input type="search" class="ctl" id="pq" placeholder="Zoek categorie…" autocomplete="off"></div>
+    <div class="pl" id="pl"></div>
+    ${showScope||showNote?`<div class="pf">
+      ${showScope&&nSame>1?`<label><input type="checkbox" id="pscope"> Ook voor alle ${nSame} transacties van ‘${esc(t.p)}’ (${dirOf(t)==="in"?"ontvangen":"betaald"}) — maakt een regel</label>`:""}
+      ${showNote?`<input type="text" class="ctl" id="pnote" placeholder="Notitie (optioneel), bijv. waar dit voor was" value="${esc(o.n||"")}" maxlength="140">`:""}
+      <div style="display:flex;gap:8px;justify-content:flex-end">${o.c?`<button type="button" class="btn small ghost" id="preset">Terug naar automatisch</button>`:""}${showNote?`<button type="button" class="btn small" id="psavenote">Notitie opslaan</button>`:""}</div>
+    </div>`:""}`;
+  pop.hidden=false;
+  const list=()=>{const q=$("#pq").value.trim().toLowerCase();let h="",i=0;
+    for(const g of GROUPS){const cs=[...CAT.values()].filter(c=>c.group===g&&(!q||(c.label+" "+c.id+" "+g+" "+(AARD[c.aard]||"")).toLowerCase().replace(/_/g," ").includes(q)));if(!cs.length)continue;
+      h+=`<div class="pg">${esc(g)}</div>`+cs.map(c=>`<button type="button" class="pi${i++===pIdx?" act":""}" data-c="${c.id}"><span>${esc(c.label)}${c.id===cur?" ✓":""}</span><small>${esc(AARD[c.aard]||"")}</small></button>`).join("")}
+    $("#pl").innerHTML=h||`<div class="empty">Geen categorie gevonden. Maak er een onder Regels.</div>`;};
+  pIdx=0;list();
+  // positie
+  const r=anchor.getBoundingClientRect(), pw=pop.offsetWidth, ph=pop.offsetHeight;
+  let left=Math.min(window.innerWidth-pw-12,Math.max(12,r.right-pw)), top=r.bottom+6;
+  if(top+ph>window.innerHeight-12) top=Math.max(12,r.top-ph-6);
+  pop.style.left=left+"px";pop.style.top=top+"px";
+  const pq=$("#pq");pq.focus();
+  pq.oninput=()=>{pIdx=0;list()};
+  pq.onkeydown=e=>{const items=[...pop.querySelectorAll(".pi")];
+    if(e.key==="ArrowDown"){pIdx=Math.min(items.length-1,pIdx+1);e.preventDefault();list()}
+    else if(e.key==="ArrowUp"){pIdx=Math.max(0,pIdx-1);e.preventDefault();list()}
+    else if(e.key==="Enter"&&items[pIdx]){choose(items[pIdx].dataset.c)} else if(e.key==="Escape")closePicker()};
+  $("#pl").onclick=e=>{const b=e.target.closest(".pi");if(b)choose(b.dataset.c)};
+  const rs=$("#preset");if(rs)rs.onclick=()=>{const u=setTxCat([ctx.id],null);closePicker();toast("Terug naar automatisch",u)};
+  const sn=$("#psavenote");if(sn)sn.onclick=()=>{setTxCat([ctx.id],undefined,$("#pnote").value.trim());closePicker();toast("Notitie opgeslagen")};
+}
+function choose(c){
+  const ctx=PCTX, label=(CAT.get(c)||{}).label;
+  if(ctx.id){const t=TXBY.get(ctx.id);const note=$("#pnote")?$("#pnote").value.trim():undefined;
+    const scope=$("#pscope")&&$("#pscope").checked;
+    if(scope){const u1=setRule(t.p,dirOf(t),c);const u2=setTxCat([t.id],null,note);toast(`Regel: ‘${t.p}’ → ${label}`,()=>{u1();u2()})}
+    else{const u=setTxCat([t.id],c,note);toast(`→ ${label}`,u)}}
+  else if(ctx.group){const g=ctx.group;const u=setRule(g.p,g.dir,c);toast(`Regel: ‘${g.p}’ → ${label} (${g.tx.length}×)`,u)}
+  else if(ctx.ids){const u=setTxCat(ctx.ids,c);toast(`${ctx.ids.length} transacties → ${label}`,u);S.sel.clear()}
+  else if(ctx.rule){setRule(ctx.rule.p,ctx.rule.dir,c);toast(`Regel aangepast → ${label}`)}
+  closePicker();render();
+}
+function closePicker(){$("#pop").hidden=true;PCTX=null}
+document.addEventListener("mousedown",e=>{const p=$("#pop");if(!p.hidden&&!p.contains(e.target)&&!e.target.closest("[data-pick],[data-gpick],#bulkpick,[data-rpick]"))closePicker()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePicker()});
+window.addEventListener("resize",closePicker);
+
+// ---------- events ----------
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button,input");if(!b)return;
+  if(b.dataset.tab){S.tab=b.dataset.tab;S.sel.clear();closePicker();render();try{localStorage.setItem(LS+"-tab",S.tab)}catch(_){}return}
+  if(b.dataset.pick){if(PCTX&&PCTX.id===b.dataset.pick){closePicker();return}openPicker(b,{id:b.dataset.pick});return}
+  if(b.dataset.gpick){openPicker(b,{group:GCACHE.get(b.dataset.gpick)});return}
+  if(b.dataset.gok){const g=GCACHE.get(b.dataset.gok);const c=catOf(g.tx[0]);const u=setRule(g.p,g.dir,c);toast(`Bevestigd: ‘${g.p}’ → ${CAT.get(c).label}`,u);return}
+  if(b.dataset.expand){const k=b.dataset.expand;S.expanded.has(k)?S.expanded.delete(k):S.expanded.add(k);render();return}
+  if(b.dataset.gsplit){const g=GCACHE.get(b.dataset.gsplit);S.f={q:g.p,year:"",acc:"",cat:"",dir:g.dir,xfer:true,month:""};S.tab="all";S.limit=150;render();window.scrollTo(0,0);return}
+  if(b.dataset.sel){b.checked?S.sel.add(b.dataset.sel):S.sel.delete(b.dataset.sel);render();return}
+});
+
+function render(){
+  renderHeader();
+  const v=$("#view"), y=window.scrollY;
+  if(S.tab==="queue")renderQueue(v);else if(S.tab==="all")renderAll(v);else if(S.tab==="overview")renderOverview(v);else renderRules(v);
+  if(mode==="local"&&!document.getElementById("lsnote")){v.insertAdjacentHTML("afterbegin",`<div class="notice" id="lsnote">Je keuzes worden nu alleen in deze browser bewaard. Open het kasboek via claude.ai (ingelogd) om ze centraal op te slaan.</div>`)}
+  window.scrollTo(0,y);
+}
+try{const t=localStorage.getItem(LS+"-tab");if(t)S.tab=t}catch(e){}
+render();
+connect();
+})();
+</script>
