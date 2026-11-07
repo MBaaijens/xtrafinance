@@ -26,6 +26,8 @@ transacties, namen of rekeningnummers in.
 | `scripts/categories.py` | Categorieën (groep, soort, aard) en algemene regels |
 | `scripts/build.py` | Categoriseert en bouwt de pagina |
 | `app/template.html` | De categoriseeromgeving (wachtrij, lijst, overzicht, regels) |
+| `scripts/apply_choices.py` | Past de keuzes uit de pagina (export van de database naar `private/db/`) toe |
+| `scripts/analyse.py` | Berekent de aggregaten voor het patronenrapport (`private/analyse.json`) |
 
 Volgorde van categorisering: handmatige keuze per transactie → eigen regel per
 tegenpartij (gemaakt in de pagina) → persoonlijke regels → algemene regels.
