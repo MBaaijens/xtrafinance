@@ -92,6 +92,7 @@ R = [
     # --- Financieel / overheid
     ("toeslagen", "any", r"zorgtoeslag|voorschot zorgtoes|teruggaaf|huurtoeslag", "in"),
     ("belasting", "party", r"belastingdienst", None),
+    ("zakelijk", "desc", r"verklaring omtrent het gedrag|\bvog\b", None),
     ("boetes", "party", r"justitie en veiligheid|cjib", None),
     ("gemeente", "party", r"gemeente|rdw\b|kvk|kamer van koophandel|vog-aanvraag|woningnet|pasfoto", None),
     ("bank", "party", r"^rabobank$|^knab$|pakketkosten|^kosten$", None),
